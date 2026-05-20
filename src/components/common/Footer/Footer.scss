@@ -1,0 +1,423 @@
+.Footer__mainWrapper {
+  background-color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  .Footer__ContentWrapper {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5dvw;
+    .Footer__contactInfoMainWrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 20px 5px;
+      border-bottom: 1px solid var(--color-white);
+
+      .contactInfoWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1dvw;
+        h3 {
+          font-family: var(--mainFont);
+          font-size: 2dvw;
+          color: var(--color-white);
+          line-height: 1.5dvw;
+        }
+        p {
+          font-family: var(--paraFont);
+          font-size: 0.9dvw;
+          font-weight: 500;
+          color: var(--color-white);
+        }
+      }
+
+      .contactWrapper {
+        display: flex;
+        justify-content: center;
+        gap: 1.5dvw;
+        align-items: center;
+
+        .contactCard__Wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1dvw;
+          .contactIconWrapper {
+            color: var(--color-white);
+          }
+          .contactDetailWrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            gap: 5px;
+
+            p {
+              color: var(--color-white);
+              font-family: var(--paraFont);
+              font-size: 1dvw;
+            }
+            a {
+              color: var(--color-white);
+              text-decoration: none;
+              font-family: var(--paraFont);
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+
+    .Footer__linksMianWrapper {
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid var(--color-white);
+
+      padding: 20px 0px;
+
+      .Footer__leftWrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2dvw;
+        padding: 5px 10px;
+
+        .FooterLogoWrapper {
+          img {
+            height: 4dvw;
+            width: auto;
+          }
+        }
+        P {
+          color: var(--color-white);
+          font-family: var(--paraFont);
+          font-size: 1dvw;
+          font-weight: 500;
+          line-height: 1.5dvw;
+        }
+
+        .Footer__socialMediaIconWrapper {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          gap: 1.1dvw;
+
+          button {
+            height: 3dvw;
+            width: 3dvw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            outline: none;
+            border-radius: 50px;
+            transition: all 0.4s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+              background-color: var(--color-seconday);
+              color: var(--color-white);
+              transform: scale(1.1) translateY(-10px);
+            }
+          }
+        }
+      }
+
+      .Footer__rightWrapper {
+        flex: 2;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5dvw;
+        .linksMainWrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 1dvw;
+          h3 {
+            font-family: var(--mainFont);
+            font-size: 2dvw;
+            color: var(--color-white);
+          }
+          .linkswrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1dvw;
+            margin-top: 10px;
+
+            li {
+              list-style: none;
+              text-decoration: none;
+              font-family: var(--paraFont);
+              font-size: 1dvw;
+              color: var(--color-white);
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+    .Footer__outtroWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 0px;
+      p {
+        font-family: var(--paraFont);
+        color: var(--color-white);
+        font-weight: 500;
+        font-size: 1.1dvw;
+        text-align: center;
+      }
+    }
+  }
+}
+/* Responsive Design for Footer */
+@media screen and (max-width: 1024px) {
+  .Footer__mainWrapper {
+    padding-top: 30px;
+
+    .Footer__ContentWrapper {
+      width: 95%;
+      gap: 1.2rem;
+
+      .Footer__contactInfoMainWrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 15px 5px;
+
+        .contactInfoWrapper {
+          gap: 0.8rem;
+
+          h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            line-height: 1.3;
+          }
+
+          p {
+            font-size: clamp(0.8rem, 1.2vw, 1rem);
+          }
+        }
+
+        .contactWrapper {
+          gap: 1.2rem;
+          flex-wrap: wrap;
+
+          .contactCard__Wrapper {
+            gap: 0.8rem;
+
+            .contactDetailWrapper {
+              p {
+                font-size: clamp(0.8rem, 1.2vw, 1rem);
+              }
+
+              a {
+                font-size: clamp(0.8rem, 1.2vw, 1rem);
+              }
+            }
+          }
+        }
+      }
+
+      .Footer__linksMianWrapper {
+        padding: 15px 0;
+
+        .Footer__leftWrapper {
+          gap: 1.5rem;
+          padding: 5px;
+
+          .FooterLogoWrapper img {
+            height: clamp(40px, 4vw, 60px);
+          }
+
+          p {
+            font-size: clamp(0.8rem, 1.2vw, 1rem);
+            line-height: 1.4;
+          }
+
+          .Footer__socialMediaIconWrapper {
+            gap: 0.8rem;
+
+            button {
+              height: clamp(35px, 3vw, 45px);
+              width: clamp(35px, 3vw, 45px);
+            }
+          }
+        }
+
+        .Footer__rightWrapper {
+          gap: 1.2rem;
+
+          .linksMainWrapper {
+            gap: 0.8rem;
+
+            h3 {
+              font-size: clamp(1.1rem, 2vw, 1.5rem);
+            }
+
+            .linkswrapper {
+              gap: 0.8rem;
+
+              li {
+                font-size: clamp(0.8rem, 1.2vw, 1rem);
+              }
+            }
+          }
+        }
+      }
+
+      .Footer__outtroWrapper {
+        padding: 12px 0;
+
+        p {
+          font-size: clamp(0.8rem, 1.3vw, 1.1rem);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Footer__mainWrapper {
+    padding-top: 25px;
+
+    .Footer__ContentWrapper {
+      width: 98%;
+      padding-left: 20px;
+
+      .Footer__contactInfoMainWrapper {
+        .contactWrapper {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+      }
+
+      .Footer__linksMianWrapper {
+        flex-direction: column;
+        gap: 2rem;
+
+        .Footer__leftWrapper {
+          text-align: center;
+          align-items: center;
+
+          .Footer__socialMediaIconWrapper {
+            justify-content: center;
+          }
+        }
+
+        .Footer__rightWrapper {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+
+          .linksMainWrapper {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Footer__mainWrapper {
+    padding-top: 20px;
+
+    .Footer__ContentWrapper {
+      width: 100%;
+      padding-left: 20px;
+
+      .Footer__contactInfoMainWrapper {
+        padding: 12px 5px;
+
+        .contactInfoWrapper {
+          text-align: center;
+          align-items: center;
+        }
+
+        .contactWrapper {
+          .contactCard__Wrapper {
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+          }
+        }
+      }
+
+      .Footer__linksMianWrapper {
+        padding: 12px 0;
+
+        .Footer__rightWrapper {
+          grid-template-columns: 1fr;
+          gap: 1.2rem;
+          text-align: center;
+
+          .linksMainWrapper {
+            .linkswrapper {
+              align-items: center;
+            }
+          }
+        }
+      }
+
+      .Footer__outtroWrapper {
+        padding: 10px 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Footer__mainWrapper {
+    .Footer__ContentWrapper {
+      padding-left: 20px;
+      .Footer__contactInfoMainWrapper {
+        .contactInfoWrapper {
+          text-align: left;
+          align-items: flex-start;
+        }
+
+        .contactWrapper {
+          align-items: flex-start;
+          
+          .contactCard__Wrapper {
+            align-items: flex-start;
+            text-align: left;
+          }
+        }
+      }
+
+      .Footer__linksMianWrapper {
+        .Footer__leftWrapper {
+          text-align: left;
+          align-items: flex-start;
+
+          .Footer__socialMediaIconWrapper {
+            justify-content: flex-start;
+          }
+        }
+
+        .Footer__rightWrapper {
+          text-align: left;
+
+          .linksMainWrapper {
+            text-align: left;
+            
+            .linkswrapper {
+              align-items: flex-start;
+            }
+          }
+        }
+      }
+
+      .Footer__outtroWrapper {
+        p {
+          text-align: left;
+        }
+      }
+    }
+  }
+}
