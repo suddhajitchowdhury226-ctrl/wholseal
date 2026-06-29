@@ -502,7 +502,7 @@ const RibbonNavigation = () => {
     "Health Concern": [],
     "Brands": brands.map(brand => ({
     name: brand,
-    url: `https://rayshealthyliving.com/products?brand=${encodeURIComponent(brand)}`
+    url: `${import.meta.env.VITE_RETAIL_URL}/products?brand=${encodeURIComponent(brand)}`
   })),
     "Categories": [],
     "Maximum Cardio": [
@@ -511,8 +511,8 @@ const RibbonNavigation = () => {
       { name: "Video", url: "/maximum-cardio-video" },
     ],
     "Essential Oil": [
-      { name: "Shop Now", url: "https://rayshealthyliving.com/products?category=6878f34fac69d215cf9da137" },
-      { name: "Know More", url: "https://rayshealthyliving.com/essential-oils-info" },
+      { name: "Shop Now", url: `${import.meta.env.VITE_RETAIL_URL}/products?category=6878f34fac69d215cf9da137` },
+      { name: "Know More", url: `${import.meta.env.VITE_RETAIL_URL}/essential-oils-info` },
     ],
     "Ray's Vitality": [],
   };

@@ -118,7 +118,7 @@ export const Navbar = () => {
             <a href="/products">Products</a>
             <a href="/blogs">Blogs</a>
             <a href="/contact">Contact</a>
-            <button className="wholesale-btn" onClick={() => window.open("https://rayshealthyliving.com", "_blank")}>
+            <button className="wholesale-btn" onClick={() => window.open(import.meta.env.VITE_RETAIL_URL, "_blank")}>
               Retail
             </button>
             <button className="feedback-btn" onClick={() => navigate("/feedback")}>
@@ -243,7 +243,7 @@ export const Navbar = () => {
               <a href="/products" onClick={() => setIsMobileMenuOpen(false)}>Products</a>
               <a href="/blogs" onClick={() => setIsMobileMenuOpen(false)}>Blogs</a>
               <a href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
-              <button className="wholesale-btn" onClick={() => { window.open("https://rayshealthyliving.com", "_blank"); setIsMobileMenuOpen(false); }}>
+              <button className="wholesale-btn" onClick={() => { window.open(import.meta.env.VITE_RETAIL_URL, "_blank"); setIsMobileMenuOpen(false); }}>
                 Retail
               </button>
               <button className="feedback-btn" onClick={() => { navigate("/feedback"); setIsMobileMenuOpen(false); }}>

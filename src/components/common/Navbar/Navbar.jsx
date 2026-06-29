@@ -2146,7 +2146,7 @@ export const Navbar = () => {
               <a href="/products"><ShoppingBag size={16} /> Products</a>
               <a href="/blogs"><FileText size={16} /> Blogs</a>
               <a href="/contact"><Mail size={16} /> Contact</a>
-              <button className="wholesale-btn" onClick={() => window.open("https://rayshealthyliving.com", "_blank")}><Building2 size={16} /> Retail</button>
+              <button className="wholesale-btn" onClick={() => window.open(import.meta.env.VITE_RETAIL_URL, "_blank")}><Building2 size={16} /> Retail</button>
               <button onClick={() => navigate("/feedback")}><MessageSquare size={16} /> Feedback</button>
             </div>
           </div>
@@ -2296,7 +2296,7 @@ export const Navbar = () => {
                   </button>
                 </div>
 
-                <button className="mobile-menu-retail" onClick={() => { window.open("https://rayshealthyliving.com", "_blank"); setIsMobileMenuOpen(false); }}>
+                <button className="mobile-menu-retail" onClick={() => { window.open(import.meta.env.VITE_RETAIL_URL, "_blank"); setIsMobileMenuOpen(false); }}>
                   <Building2 size={18} /> Retail
                 </button>
 

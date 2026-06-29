@@ -331,8 +331,8 @@ export const Footer = React.memo(() => {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open("https://rayshealthyliving.com", "_blank")}
-              aria-label="Switch to the retail website at rayshealthyliving.com"
+              onClick={() => window.open(import.meta.env.VITE_RETAIL_URL, "_blank")}
+              aria-label="Switch to the retail website at ray-retail-wheat.vercel.app"
               style={{
                 background: "linear-gradient(135deg, #10b981, #059669)",
                 color: "#fff",
