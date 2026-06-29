@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const SuccessPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -27,7 +29,7 @@ const SuccessPage = () => {
           return;
         }
 
-        const response = await axios.post('https://api.rayonewholesale.com/api/payments/create-and-confirm-payment', {
+        const response = await axios.post(`${API_BASE_URL}/api/payments/create-and-confirm-payment`, {
           action: 'confirm',
           paypalOrderId,
           payerId,

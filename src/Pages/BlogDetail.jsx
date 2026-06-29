@@ -5,6 +5,8 @@ import Navbar from "../components/common/Navbar/Navbar.jsx";
 import { Footer } from "../components/common/Footer/Footer.jsx";
 import "./BlogDetail.scss";
 
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const BlogDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const BlogDetail = () => {
   const fetchBlogDetail = async () => {
     try {
       setLoading(true);
-      const API_BASE_URL = 'https://api.rayonewholesale.com';
+      const API_BASE_URL = import.meta.env.VITE_BASE_URL;
       const response = await axios.get(`${API_BASE_URL}/api/wholesaler/get-all-blogs`);
       const blogData = response.data.blogs.find(blog => blog._id === id);
       
@@ -104,7 +106,7 @@ const BlogDetail = () => {
                   {blog.images.map((image, index) => (
                     <img
                       key={index}
-                      src={`https://api.rayonewholesale.com/${image}`}
+                      src={`${API_BASE_URL}/${image}`}
                       alt={`Blog image ${index + 1}`}
                       className="blog-image"
                       onError={(e) => {

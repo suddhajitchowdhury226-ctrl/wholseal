@@ -3,6 +3,8 @@ import axios from "axios";
 
 import "../components/Blog/Blog.scss";
 
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
+
 import BlogSection from "../Blogsection.jsx";
 import BlogCard from "../BlogCard.jsx";
 import Navbar from "../../components/common/Navbar/Navbar.jsx";
@@ -32,7 +34,7 @@ const Blog = () => {
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      const API_BASE_URL = 'https://api.rayonewholesale.com';
+      const API_BASE_URL = import.meta.env.VITE_BASE_URL;
       const response = await axios.get(`${API_BASE_URL}/api/wholesaler/get-all-blogs`);
       
       // Transform API data to match BlogCard component structure

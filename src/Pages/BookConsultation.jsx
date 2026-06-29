@@ -454,6 +454,8 @@ import { Calendar, User } from 'lucide-react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const ConsultationBooking = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -571,7 +573,7 @@ const ConsultationBooking = () => {
 
   const fetchTimeSlots = async (date) => {
     try {
-      const timeSlotsResponse = await axios.get('https://api.rayonewholesale.com/api/bookings/timeslots', {
+      const timeSlotsResponse = await axios.get(`${API_BASE_URL}/api/bookings/timeslots`, {
         params: { date: date.toISOString(), consultant: formData.consultant, service: formData.service }
       });
       const slots = timeSlotsResponse.data.timeSlots || [];
@@ -594,7 +596,7 @@ const ConsultationBooking = () => {
     if (currentStep === 4) {
       if (formData.paymentMethod === 'paypal') {
         try {
-          const response = await axios.post('https://api.rayonewholesale.com/api/payments/create-and-confirm-payment', {
+          const response = await axios.post(`${API_BASE_URL}/api/payments/create-and-confirm-payment`, {
             action: 'create',
             bookingData: {
               ...formData,
@@ -610,7 +612,7 @@ const ConsultationBooking = () => {
         }
       } else {
         try {
-          const response = await axios.post('https://api.rayonewholesale.com/api/bookings/create-booking', {
+          const response = await axios.post(`${API_BASE_URL}/api/bookings/create-booking`, {
             ...formData,
             date: formData.date,
             paymentStatus: 'Completed'

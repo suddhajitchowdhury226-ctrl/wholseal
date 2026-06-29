@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const CancelPage = () => {
   const navigate = useNavigate();
 
@@ -10,7 +12,7 @@ const CancelPage = () => {
       const bookingId = localStorage.getItem('pendingBookingId');
       if (bookingId) {
         try {
-          await axios.delete(`https://api.rayonewholesale.com/api/bookings/${bookingId}`);
+          await axios.delete(`${API_BASE_URL}/api/bookings/${bookingId}`);
           console.log('Pending booking deleted:', bookingId);
         } catch (error) {
           console.error('Error deleting pending booking:', error);

@@ -102,7 +102,7 @@ export const Productoverview = () => {
 
   const getImageUrl = useCallback((imagePath) => {
     if (!imagePath) return placeholderImg;
-    return imagePath.startsWith("http") ? imagePath : `https://api.rayonewholesale.com/${imagePath.replace(/\\/g, "/")}`;
+    return imagePath.startsWith("http") ? imagePath : `${BASE_URL}/${imagePath.replace(/\\/g, "/")}`;
   }, []);
 
   const showToast = useCallback((message, type = "success") => {

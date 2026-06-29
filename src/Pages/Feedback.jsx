@@ -49,7 +49,7 @@ export default function Feedback() {
     }
 
     try {
-      const response = await fetch('https://api.rayonewholesale.com/api/user/feedback', {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/user/feedback`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
