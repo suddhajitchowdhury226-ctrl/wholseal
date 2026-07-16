@@ -2,11 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Blog.scss";
 import BlogBgImg1 from "../../../assets/images/bg/BlogBgImg1.jpg";
+import BlogImg1 from "../../../assets/images/bg/BlogImg1.jpg";
+import BlogImg2 from "../../../assets/images/bg/BlogImg2.jpg";
+import BlogImg3 from "../../../assets/images/bg/BlogImg3.jpg";
+import BlogImg4 from "../../../assets/images/bg/BlogImg4.jpg";
 import { Send, ChevronLeft, ChevronRight } from "lucide-react";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
+
+const FALLBACK_IMAGES = [BlogImg1, BlogImg2, BlogImg3, BlogImg4];
 
 export const Blog = () => {
   const navigate = useNavigate();
@@ -17,6 +23,14 @@ export const Blog = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const slideInterval = useRef(null);
   const API_BASE_URL = import.meta.env.VITE_BASE_URL;
+
+  // Build full image URL — normalize backslashes, prepend base URL
+  const getImageUrl = (imagePath, index = 0) => {
+    if (!imagePath) return FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
+    if (imagePath.startsWith('http')) return imagePath;
+    const normalized = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
+    return `${API_BASE_URL}/${normalized}`;
+  };
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -65,7 +79,6 @@ export const Blog = () => {
     if (!text) return '';
     const plainText = stripHtml(text);
     if (plainText.length <= maxLength) return plainText;
-    // Cut at word boundary — never mid-word
     const truncated = plainText.substring(0, maxLength);
     const lastSpace = truncated.lastIndexOf(' ');
     return (lastSpace > 0 ? truncated.substring(0, lastSpace) : truncated) + '...';
@@ -76,7 +89,6 @@ export const Blog = () => {
       toast.error('Please enter your email address');
       return;
     }
-    // Basic email validation
     const emailRegex = /^\S+@\S+\.\S+$/;
     if (!emailRegex.test(message)) {
       toast.error('Please enter a valid email address');
@@ -119,13 +131,16 @@ export const Blog = () => {
                 <ChevronLeft size={24} />
               </button>
               <div className="Blog__carouselTrack" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                {blogs.map((blog) => (
+                {blogs.map((blog, idx) => (
                   <div className="Blog__cardWrapper" key={blog._id}>
                     <div className="Blog__cardImgWrapper">
                       <img 
-                        src={blog.images?.[0] ? `${API_BASE_URL}/${blog.images[0].replace(/\\/g, '/')}` : BlogBgImg1} 
-                        alt={blog.title}
-                        onError={(e) => { e.target.src = BlogBgImg1; }}
+                        src={getImageUrl(blog.images?.[0], idx)}
+                        alt={blog.title || 'Blog post'}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = FALLBACK_IMAGES[idx % FALLBACK_IMAGES.length];
+                        }}
                       />
                     </div>
                     <div className="Blog__infoWrapper">
@@ -147,7 +162,7 @@ export const Blog = () => {
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                           </svg>
-                          blog
+                          Blog
                         </span>
                       </div>
                       <h3>{blog.title}</h3>

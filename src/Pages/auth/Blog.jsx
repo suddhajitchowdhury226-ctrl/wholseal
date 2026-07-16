@@ -9,6 +9,19 @@ import BlogSection from "../Blogsection.jsx";
 import BlogCard from "../BlogCard.jsx";
 import Navbar from "../../components/common/Navbar/Navbar.jsx";
 import { Footer } from "../../components/common/Footer/Footer.jsx";
+import BlogImg1 from "../../assets/images/bg/BlogImg1.jpg";
+import BlogImg2 from "../../assets/images/bg/BlogImg2.jpg";
+import BlogImg3 from "../../assets/images/bg/BlogImg3.jpg";
+import BlogImg4 from "../../assets/images/bg/BlogImg4.jpg";
+
+const FALLBACK_IMAGES = [BlogImg1, BlogImg2, BlogImg3, BlogImg4];
+
+const getBlogImageUrl = (imagePath, index = 0) => {
+  if (!imagePath) return FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
+  if (imagePath.startsWith('http')) return imagePath;
+  const normalized = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
+  return `${API_BASE_URL}/${normalized}`;
+};
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -61,12 +74,12 @@ const Blog = () => {
           description,
           speaker: {
             name: blog.author?.name || "Anonymous",
-            image: blog.images?.[0] ? `${API_BASE_URL}/${blog.images[0]}` : `https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face`,
+            image: getBlogImageUrl(blog.images?.[0], index),
           },
           type: "featured",
           createdAt: blog.createdAt,
           images: blog.images,
-          blogImage: blog.images?.[0] ? `${API_BASE_URL}/${blog.images[0]}` : null
+          blogImage: getBlogImageUrl(blog.images?.[0], index),
         };
       });
       
@@ -140,8 +153,8 @@ const Blog = () => {
                     </div>
                   ) : (
                     <div className="webinar-grid three-column">
-                      {blogs.slice((currentPage - 1) * blogsPerPage, currentPage * blogsPerPage).map((blog) => (
-                        <BlogCard key={blog.id} webinar={blog} />
+                      {blogs.slice((currentPage - 1) * blogsPerPage, currentPage * blogsPerPage).map((blog, idx) => (
+                        <BlogCard key={blog.id} webinar={blog} index={(currentPage - 1) * blogsPerPage + idx} />
                       ))}
                     </div>
                   )}

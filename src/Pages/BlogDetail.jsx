@@ -4,8 +4,20 @@ import axios from "axios";
 import Navbar from "../components/common/Navbar/Navbar.jsx";
 import { Footer } from "../components/common/Footer/Footer.jsx";
 import "./BlogDetail.scss";
+import BlogImg1 from "../assets/images/bg/BlogImg1.jpg";
+import BlogImg2 from "../assets/images/bg/BlogImg2.jpg";
+import BlogImg3 from "../assets/images/bg/BlogImg3.jpg";
+import BlogImg4 from "../assets/images/bg/BlogImg4.jpg";
 
 const API_BASE_URL = import.meta.env.VITE_BASE_URL;
+const FALLBACK_IMAGES = [BlogImg1, BlogImg2, BlogImg3, BlogImg4];
+
+const getBlogImageUrl = (imagePath, index = 0) => {
+  if (!imagePath) return FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
+  if (imagePath.startsWith('http')) return imagePath;
+  const normalized = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
+  return `${API_BASE_URL}/${normalized}`;
+};
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -106,11 +118,12 @@ const BlogDetail = () => {
                   {blog.images.map((image, index) => (
                     <img
                       key={index}
-                      src={`${API_BASE_URL}/${image}`}
+                      src={getBlogImageUrl(image, index)}
                       alt={`Blog image ${index + 1}`}
                       className="blog-image"
                       onError={(e) => {
-                        e.target.style.display = 'none';
+                        e.target.onerror = null;
+                        e.target.src = FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
                       }}
                     />
                   ))}

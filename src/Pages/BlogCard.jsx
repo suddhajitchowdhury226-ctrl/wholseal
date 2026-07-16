@@ -1,9 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BlogCard.scss';
+import BlogImg1 from '../assets/images/bg/BlogImg1.jpg';
+import BlogImg2 from '../assets/images/bg/BlogImg2.jpg';
+import BlogImg3 from '../assets/images/bg/BlogImg3.jpg';
+import BlogImg4 from '../assets/images/bg/BlogImg4.jpg';
 
-const BlogCard = ({ webinar }) => {
+const FALLBACK_IMAGES = [BlogImg1, BlogImg2, BlogImg3, BlogImg4];
+
+const BlogCard = ({ webinar, index = 0 }) => {
   const navigate = useNavigate();
+  const fallback = FALLBACK_IMAGES[index % FALLBACK_IMAGES.length];
   const {
     category,
     title,
@@ -68,13 +75,14 @@ const BlogCard = ({ webinar }) => {
         )}
       </div>
 
-      {webinar.blogImage && (
+      {(webinar.blogImage || fallback) && (
         <div className="blog-featured-image">
           <img 
-            src={webinar.blogImage} 
+            src={webinar.blogImage || fallback}
             alt={title}
             onError={(e) => {
-              e.target.style.display = 'none';
+              e.target.onerror = null;
+              e.target.src = fallback;
             }}
           />
         </div>
@@ -88,14 +96,15 @@ const BlogCard = ({ webinar }) => {
       <div className="card-footer">
         <div className="speaker-info">
           <div className="speaker-avatar">
-            <img 
-              src={speaker.image} 
-              alt={speaker.name}
-              onError={(e) => {
-                e.target.src = `https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face`;
-              }}
-            />
-          </div>
+              <img 
+                src={speaker.image || fallback}
+                alt={speaker.name}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = fallback;
+                }}
+              />
+            </div>
           <span className="speaker-name">Date</span>
           {webinar.createdAt && (
             <span className="blog-date">
