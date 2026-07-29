@@ -882,7 +882,7 @@ export const ProductLists = () => {
                   borderBottom: "1px solid rgba(255,255,255,0.2)",
                 }}
               >
-                SKU/UPC
+                Product ID / UPC
               </th>
               <th
                 style={{
@@ -978,7 +978,12 @@ export const ProductLists = () => {
                       fontSize: "12px",
                     }}
                   >
-                    {product.sku || "N/A"}
+                    <div style={{ fontWeight: "600", color: "#374151", marginBottom: "4px" }}>
+                      {product.item_number || "N/A"}
+                    </div>
+                    <div style={{ fontSize: "11px", color: "#9ca3af" }}>
+                      {product.lookup_code || "—"}
+                    </div>
                   </td>
                   <td
                     style={{
@@ -990,13 +995,12 @@ export const ProductLists = () => {
                   >
                     <div
                       style={{
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
+                        whiteSpace: "normal",
+                        wordBreak: "break-word",
+                        lineHeight: "1.4",
                       }}
                     >
                       {product.name}
-
                     </div>
                     <div
                       style={{
@@ -1453,7 +1457,7 @@ export const ProductLists = () => {
                         color: "white",
                       }}
                     >
-                      <th style={{ padding: "16px", textAlign: "left", fontWeight: "600", borderBottom: "1px solid rgba(255,255,255,0.2)" }}>SKU/UPC</th>
+                      <th style={{ padding: "16px", textAlign: "left", fontWeight: "600", borderBottom: "1px solid rgba(255,255,255,0.2)" }}>Product ID / UPC</th>
                       <th style={{ padding: "16px", textAlign: "left", fontWeight: "600", borderBottom: "1px solid rgba(255,255,255,0.2)" }}>Product Title</th>
                       <th style={{ padding: "16px", textAlign: "left", fontWeight: "600", borderBottom: "1px solid rgba(255,255,255,0.2)" }}>Price</th>
                       <th style={{ padding: "16px", textAlign: "center", fontWeight: "600", borderBottom: "1px solid rgba(255,255,255,0.2)" }}>Quantity</th>
@@ -1478,10 +1482,11 @@ export const ProductLists = () => {
                           }}
                         >
                           <td style={{ padding: "16px", color: "#6b7280", fontFamily: "monospace", fontSize: "12px" }}>
-                            {product.sku || "N/A"}
+                            <div style={{ fontWeight: "600", color: "#374151", marginBottom: "4px" }}>{product.item_number || "N/A"}</div>
+                            <div style={{ fontSize: "11px", color: "#9ca3af" }}>{product.lookup_code || "—"}</div>
                           </td>
-                          <td style={{ padding: "16px", fontWeight: "500", color: "#1f2937", maxWidth: "200px" }}>
-                            <div style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          <td style={{ padding: "16px", fontWeight: "500", color: "#1f2937", maxWidth: "300px" }}>
+                            <div style={{ whiteSpace: "normal", wordBreak: "break-word", lineHeight: "1.4" }}>
                               {product.name}
                             </div>
                             <div style={{ fontSize: "12px", color: "#77a13d", marginTop: "4px", fontWeight: "600" }}>
